@@ -1,0 +1,12 @@
+@media screen and (max-width: 600px) {
+  .top-box{
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    margin: 0;
+  }
+  .top-box img {
+    width: 550px;
+    transform: translateX(-210px);
+  }
+}
