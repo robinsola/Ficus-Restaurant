@@ -35,6 +35,15 @@ html, body {
 
 //main-content
 
+.hovered  {
+  transition-property: transform opacity;
+  transition-duration: 0.25s;
+}
+.hovered:hover {
+  opacity: .75;
+  transform: scale(1.01);
+}
+
 .top-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -58,9 +67,11 @@ html, body {
     a{
       text-decoration: none;
       color: $div-color;
+      transition-property: color;
+      transition-duration: 1s;
       &:hover {
         cursor: pointer;
-        color: white;
+        color: hotpink;
       }
     }
   }
@@ -198,6 +209,7 @@ html, body {
 
 @media screen and (min-width: 640px) {
   .page-down {
+    font-size: 2vw;
     h1 {
       display: none;
     }
@@ -207,19 +219,39 @@ html, body {
       justify-content: center;
       list-style: none;
     }
+
     li  {
       margin: 0 3%;
       a{
         text-decoration: none;
         color: $div-color;
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-          color: desaturate(lighten(darkred, 30), 20);
-        }
+        cursor: pointer;
+        opacity: 1;
+        position: relative;
       }
-      font-size: 2vw;
+      a::before {
+        content: '';
+        display: block;
+        height: 3px;
+        background-color: red;
+        position: absolute;
+        top: -0.75em;
+        left: 0;
+        right: 0;
+        transform: scale(0,1);
+        transition: transform ease-in-out .5s;
+        transform-origin: left;
+        }
+      a:hover::before {
+        animation-name: colorShift;
+        animation-duration: 1.5s;
+        transform: scale(1,1);
+      }
     }
+  }
+  @keyframes colorShift {
+    0% {background-color: $div-color}
+    100% {background-color: red}
   }
   .navbar img:first-of-type {
     display: none;
